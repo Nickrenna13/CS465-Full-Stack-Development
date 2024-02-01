@@ -14,16 +14,16 @@ const connect = () => {
 }
 
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose connected');
+    console.log(`Mongoose connected to ${dbURI}`);
 });
 
 mongoose.connection.on('error', err => {
-    console.log('error: ' + err);
+    console.log(`error: ` + err);
     return connect();
 });
 
 mongoose.connection.on('disconnected', () => {
-    console.log('Mongoose disconnected');
+    console.log(`Mongoose disconnected`);
 });
 
 if (process.platform === 'win32') {
