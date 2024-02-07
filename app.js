@@ -14,6 +14,7 @@ var newsRouter = require('./app_server/routes/news');
 var mealsRouter = require('./app_server/routes/meals');
 var contactRouter = require('./app_server/routes/contact');
 var aboutRouter = require('./app_server/routes/about');
+
 const apiRouter = require('./app_api/routes/index');
 
 var app = express();
@@ -41,6 +42,7 @@ app.use('/contact', contactRouter);
 app.use('/meals', mealsRouter);
 app.use('/news', newsRouter);
 app.use('/rooms', roomsRouter);
+
 app.use('/api', apiRouter);
 
 
