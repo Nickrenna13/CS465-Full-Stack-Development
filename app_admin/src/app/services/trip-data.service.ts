@@ -27,6 +27,25 @@ export class TripDataService {
       .then((response) => response as Trip[])
       .catch(this.handleError);
   }
+
+  public addTrip(formData: Trip): Promise<Trip[]> {
+    console.log('Inside TripDataService#addTrip');
+    return this.http
+      .post(this.tripUrl, formData)
+      .toPromise()
+      .then((response) => response as Trip[])
+      .catch(this.handleError);
+  }
+
+  public updateTrip(formData: Trip): Promise<Trip[]> {
+    console.log('Inside TripDataService#updateTrip');
+    return this.http
+      .put(this.tripUrl + formData.code, formData)
+      .toPromise()
+      .then((response) => response as Trip[])
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('Something has gone wrong', error);
     return Promise.reject(error.message || error);
