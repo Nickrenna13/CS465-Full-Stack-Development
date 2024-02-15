@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TripListingComponent } from './trip-listing/trip-listing.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
+import { TripDataService } from './services/trip-data.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TripCardComponent } from './trip-card/trip-card.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
+  providers: [TripDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
