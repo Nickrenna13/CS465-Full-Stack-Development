@@ -105,6 +105,7 @@ const tripsUpdateTrip = async (req, res) => {
       });
   };
 
+  
 module.exports = {
     tripsList,
     tripsFindCode,
