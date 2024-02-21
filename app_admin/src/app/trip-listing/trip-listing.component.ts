@@ -1,22 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-//import { trips } from '../data/trips';
 import { TripDataService } from '../services/trip-data.service';
-import { Trip } from '../models/trip';
-
+import { Trip } from '../../../models/trip';
+import { Router } from '@angular/router';
 
 @Component({
-
   selector: 'app-trip-listing',
   templateUrl: './trip-listing.component.html',
   styleUrls: ['./trip-listing.component.css'],
-  providers: [TripDataService]
+  providers: [TripDataService],
 })
 export class TripListingComponent implements OnInit {
-  
-  //trips: Array<any> = trips;
+  // trips: Array<any> = trips;
   trips: Trip[];
-
   message: string;
 
   constructor(
@@ -28,10 +23,9 @@ export class TripListingComponent implements OnInit {
   }
 
   protected addTrip(): void {
-    console.log('Inside TripListingComponent#addTrip');
     this.router.navigate(['add-trip']);
   }
-  
+
   private getTrips(): void {
     console.log('Inside TripListingComponent#getTrips');
     this.message = 'Searching for trips';
@@ -40,7 +34,6 @@ export class TripListingComponent implements OnInit {
       this.trips = foundTrips;
     });
   }
-
   ngOnInit(): void {
     this.getTrips();
   }

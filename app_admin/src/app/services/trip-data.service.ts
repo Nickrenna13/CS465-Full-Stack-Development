@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Trip } from '../models/trip';
+import { Trip } from '../../../models/trip';
 
 @Injectable()
 export class TripDataService {
@@ -46,7 +46,6 @@ export class TripDataService {
       .catch(this.handleError);
   }
 
-  
   private handleError(error: any): Promise<any> {
     console.error('Something has gone wrong', error);
     return Promise.reject(error.message || error);
