@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Model = mongoose.model("trips");
+const User = mongoose.model('users');
 
 const tripsList = async (req, res) => {
   Model.find({}).exec((err, trips) => {
@@ -26,6 +27,7 @@ const tripsFindByCode = async (req, res) => {
 };
 
 const tripsAddTrip = async (req, res) => {
+  getUser(req, res, (req, res) => {
   Model.create(
     {
       code: req.body.code,
@@ -49,9 +51,11 @@ const tripsAddTrip = async (req, res) => {
       }
     }
   );
+  });
 }
 
 const tripsUpdateTrip = async (req, res) => {
+  getUser(req, res, (req, res) => {
   console.log(req.body);
   Model.findOneAndUpdate(
     { code: req.params.tripCode },
@@ -85,7 +89,24 @@ const tripsUpdateTrip = async (req, res) => {
         .status(500) // server error
         .json(err);
     });
+  });
 }
+
+const getUser = (req, res, callback) => {
+  if (req.auth && req.auth.email) {
+    User.findOne({ email: req.auth.email }).exec((err, user) => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found1" });
+      } else if (err) {
+        console.log(err);
+        return res.status(404).json(err);
+      }
+      callback(req, res, user.name);
+    });
+  } else {
+    return res.status(404).json({ message: "User not found2" });
+  }
+};
 
 module.exports = {
   tripsList,
